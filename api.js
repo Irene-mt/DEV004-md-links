@@ -1,4 +1,4 @@
-import fs, { link } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import fsp from 'fs/promises';
 import axios from 'axios';
@@ -51,7 +51,6 @@ export const api = {
     },
     getLinkStatus: (objLinks) => {
         return Promise.all(objLinks.map(async (everyLink) => {
-            //console.log(everyLink)
             return await axios
                 .get(everyLink.href)
                 .then((linkStatus) => {
@@ -62,7 +61,6 @@ export const api = {
                         status: linkStatus.status,
                         ok: 'OK!',
                     }
-                    console.log(linkInfo)
                     return linkInfo;
                 }
                 ).catch((error) => {
@@ -73,13 +71,40 @@ export const api = {
                         status: error.message,
                         ok: 'FAIL!',
                     }
-                    console.log(linkInfo)
                     return linkInfo;
                 })
         }))
-        
+
+    },
+
+    // calculate duplicated links
+    calculateStats: (objStats) => {
+        // total links in md file
+        const total = (Object.keys(objStats)).length;
+        // search for duplicate href
+        const searchNumLinks = objStats.reduce((acc, link) => {
+            acc[link.href] = ++acc[link.href] || 0;
+            return acc;
+        }, {
+        })
+        // calculate unique links
+        const unique = (Object.entries(searchNumLinks)).length;
+        // calculate broken links
+        // const searchBroken = objStats.filter(link => link.ok === 'FAIL!');
+        // const broken = searchBroken.length;
+
+        const allStats = {
+            Total: total,
+            Unique: unique,
+            // Broken: broken,
+        }
+        return allStats
     },
 }
+
+/* const duplicatedLinks = objStats.filter((link) => {
+            return searchDuplicate[link.href];
+        }) */
 
 // regex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
 // console.log('EXIST', api.existPath('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links'))
@@ -90,4 +115,8 @@ export const api = {
 // console.log([...'http://www.youtube.com/watch?v=Gdma5UiMaEQ&list=RDGMEMQ1dJ7wXfLlqCjwV0xfSNbAVMpBuZEGYXA6E&index=6'.match( /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g)])
 
 
-api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/README.md').then((res) => api.getLinks(res)).then((sts) => api.getLinkStatus(sts))
+api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
+    .then((links) => api.getLinks(links))
+    .then((sts) => api.getLinkStatus(sts))
+    .then((stsNum) => api.calculateStats(stsNum))
+    .then((totUni) => console.log(totUni))

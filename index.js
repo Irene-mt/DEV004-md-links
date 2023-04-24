@@ -1,5 +1,2 @@
-/*module.exports = () => {
-  // ...
-};*/
+import { api } from './api.JS'
 
-console.log('Working on md-links')

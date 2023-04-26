@@ -110,19 +110,8 @@ export const api = {
     },
 }
 
-// regex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
-// console.log('EXIST', api.existPath('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links'))
-//console.log(api.existPath('../DEV004-data-lovers'))
-//console.log(api.convertToAbsolutePath('../DEV004-data-lovers'))
-// console.log(api.isPathDirectory('../DEV004-data-lovers/README.md'))
- // console.log(api.readDirectory('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files'))
-// console.log(api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-social-network/README.md'));
-// console.log(api.getLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/README.md'))
-// console.log([...'http://www.youtube.com/watch?v=Gdma5UiMaEQ&list=RDGMEMQ1dJ7wXfLlqCjwV0xfSNbAVMpBuZEGYXA6E&index=6'.match( /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g)])
-// console.log(api.readDirectory('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links'))
-
 // api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
 //     .then((links) => api.getLinks(links)) // api.getLinks
-//     .then((sts) => api.getLinkStatus(sts)) // api.getLinkStatus
-//     .then((stsNum) => api.calculateStats(stsNum, true)) //api.calculateStats
-//     .then((totUni) => totUni)
+//      .then((sts) => api.getLinkStatus(sts)) // api.getLinkStatus
+//      .then((stsNum) => api.calculateStats(stsNum, true)) //api.calculateStats
+//      .then((totUni) => console.log(totUni))

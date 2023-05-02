@@ -36,7 +36,7 @@ export const api = {
         // search for '(text)[link]'
         let links = contentToString.match(regex);
         // iterate on every link to get href and text
-        links.forEach((link) => {
+        links.map((link) => {
             const href = JSON.stringify(link.match(httpRegex)).slice(2, -2);
             const text = link.match(textRegex).join().slice(1, -1);
             if (href) {
@@ -45,8 +45,8 @@ export const api = {
                     text,
                     file: userPath,
                 })
-            }
-        })
+            };
+        });
         return httpLinks;
     },
     getLinkStatus: (objLinks) => {

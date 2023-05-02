@@ -1,12 +1,12 @@
+import { all } from 'axios';
 import { api } from './api.js'
 // import chalk from 'chalk';
 
 export function mdFiles(path) {
     let mdPaths = [];
-
     // validate uf the path exists
     if (!api.existPath(path)) {
-        reject(new Error('This path does not exist.'))
+        return (console.log('This path does not exist.'))
     } else {
         const pathExist = path;
         let absolutPath;
@@ -35,11 +35,25 @@ export function mdFiles(path) {
         }
         if (api.isMdFile(absolutPath)) {
             mdPaths.push(absolutPath);
-            resolve(mdPaths);
+            return mdPaths;
         } else {
-            reject(new Error('This path is not a directory or a MD file.'))
+            return (console.log('This path is not a directory or a MD file.'))
         }
     }
 }
 
-console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links'))
+// console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files'))
+
+export const mdLinks = (path) => {
+    const arrPaths = mdFiles(path)
+    if (arrPaths) {
+        return Promise.all(arrPaths.map((everyPath) => {
+            api.readMdFile(everyPath).then((fileContent) => {
+                let allLinks = api.getLinks(fileContent, everyPath);
+                console.log(allLinks);
+            })
+        }))
+    }
+}
+
+mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files')

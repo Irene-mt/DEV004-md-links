@@ -279,20 +279,20 @@ describe('calculateStats', () => {
 describe('mdFiles', () => {
   
   it('should return "the path does not exist"', () => {
-    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV04-md-links')).toBe(console.log('This path does not exist.'))
+    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV04-md-links')).toBe('This path does not exist.')
   });
   it('should return "this path is not a directory or md file"', () => {
-    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/api.js')).toBe(console.log('This path is not a directory or a MD file.'))
+    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/api.js')).toBe('This path is not a directory or a MD file.')
   });
   it('should return an array with one path', () => {
-    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/exaple-files/ex')).toEqual(
+    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/ex')).toEqual(
       [
         'C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/ex\\example2.md'
       ]
     )
   });
   it('should return an array with multiple paths', () => {
-    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/exaple-files')).toEqual(
+    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files')).toEqual(
       [
         'C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files\\ex\\example2.md',
         'C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files\\example3.md',

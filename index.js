@@ -1,4 +1,3 @@
-import { all } from 'axios';
 import { api } from './api.js'
 // import chalk from 'chalk';
 
@@ -6,7 +5,7 @@ export function mdFiles(path) {
     let mdPaths = [];
     // validate uf the path exists
     if (!api.existPath(path)) {
-        return (console.log('This path does not exist.'))
+        return ('This path does not exist.')
     } else {
         const pathExist = path;
         let absolutPath;
@@ -31,29 +30,41 @@ export function mdFiles(path) {
                     mdPaths.push(newPath);
                 }
             })
-            return mdPaths
+            if(mdPaths.length==0){
+                return 'Hola'
+            } else {
+                return mdPaths
+            }
+            
         }
         if (api.isMdFile(absolutPath)) {
             mdPaths.push(absolutPath);
             return mdPaths;
         } else {
-            return (console.log('This path is not a directory or a MD file.'))
+            return ('This path is not a directory or a MD file.')
         }
     }
 }
 
-// console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files'))
+//console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-empty'))
 
-export const mdLinks = (path) => {
-    const arrPaths = mdFiles(path)
-    if (arrPaths) {
-        return Promise.all(arrPaths.map((everyPath) => {
-            api.readMdFile(everyPath).then((fileContent) => {
-                let allLinks = api.getLinks(fileContent, everyPath);
-                console.log(allLinks);
+export const mdLinks = (path, op) => {
+    return new Promise((resolve, reject) => {
+        const arrPaths = mdFiles(path)
+        console.log(arrPaths);
+        if (arrPaths) {
+            arrPaths.map((everyPath) => {
+                api.readMdFile(everyPath)
+                .then((fileContent) => {
+                    console.log('files');
+                    let allLinks = api.getLinks(fileContent, everyPath);
+                    resolve(allLinks);
+                })
             })
-        }))
-    }
+        } 
+    })
+    
 }
 
 mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files')
+.then((res)=> console.log(res))

@@ -32,23 +32,39 @@ export const api = {
         const httpRegex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
         const textRegex = /\[[^\s]+(.+?)\]/gi;
         let httpLinks = [];
-        //console.log(userPath)
         // search for '(text)[link]'
         let links = contentToString.match(regex);
-        // iterate on every link to get href and text
-        links.map((link) => {
-            const href = JSON.stringify(link.match(httpRegex)).slice(2, -2);
-            const text = link.match(textRegex).join().slice(1, -1);
-            if (href) {
-                httpLinks.push({
-                    href,
-                    text,
-                    file: userPath,
-                })
-            };
-        });
+        // if contains links
+         if(links !== null){
+            // iterate on every link to get href and text
+            links.map((link) => {
+                const href = JSON.stringify(link.match(httpRegex)).slice(2, -2);
+                const text = link.match(textRegex).join().slice(1, -1);
+                if (href) {
+                    httpLinks.push({
+                        href,
+                        text,
+                        file: userPath,
+                    })
+                };
+            });
+        //     for(let i=0; i<links.length-1; i++){
+        //         const href = JSON.stringify(links[i].match(httpRegex)).slice(2, -2);
+        //         const text = links[i].match(textRegex).join().slice(1, -1);
+        //         if (href) {
+        //             httpLinks.push({
+        //                 href,
+        //                 text,
+        //                 file: userPath,
+        //             })
+    
+        //     }
+        // }
         return httpLinks;
+        }
+     
     },
+
     getLinkStatus: (objLinks) => {
         return Promise.all(objLinks.map((everyLink) => {
             return axios
@@ -110,8 +126,8 @@ export const api = {
     },
 }
 
-// api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
-//     .then((links) => api.getLinks(links)) // api.getLinks
-//      .then((sts) => api.getLinkStatus(sts)) // api.getLinkStatus
+ //api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
+ ///    .then((links) => api.getLinks(links)) // api.getLinks
+  //    .then((sts) => console.log(sts)) // api.getLinkStatus
 //      .then((stsNum) => api.calculateStats(stsNum, true)) //api.calculateStats
 //      .then((totUni) => console.log(totUni))

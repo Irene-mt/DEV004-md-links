@@ -30,12 +30,12 @@ export function mdFiles(path) {
                     mdPaths.push(newPath);
                 }
             })
-            if(mdPaths.length==0){
+            if (mdPaths.length == 0) {
                 return 'Hola'
             } else {
                 return mdPaths
             }
-            
+
         }
         if (api.isMdFile(absolutPath)) {
             mdPaths.push(absolutPath);
@@ -48,23 +48,21 @@ export function mdFiles(path) {
 
 //console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-empty'))
 
-export const mdLinks = (path, op) => {
+export const mdLinks = (path) => {
     return new Promise((resolve, reject) => {
         const arrPaths = mdFiles(path)
-        console.log(arrPaths);
         if (arrPaths) {
             arrPaths.map((everyPath) => {
                 api.readMdFile(everyPath)
                 .then((fileContent) => {
-                    console.log('files');
                     let allLinks = api.getLinks(fileContent, everyPath);
                     resolve(allLinks);
                 })
             })
-        } 
+        }
     })
-    
+
 }
 
 mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files')
-.then((res)=> console.log(res))
+    .then((res) => console.log(res))

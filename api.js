@@ -35,7 +35,7 @@ export const api = {
         // search for '(text)[link]'
         let links = contentToString.match(regex);
         // if contains links
-         if(links !== null){
+        if (links !== null) {
             // iterate on every link to get href and text
             links.map((link) => {
                 const href = JSON.stringify(link.match(httpRegex)).slice(2, -2);
@@ -48,21 +48,8 @@ export const api = {
                     })
                 };
             });
-        //     for(let i=0; i<links.length-1; i++){
-        //         const href = JSON.stringify(links[i].match(httpRegex)).slice(2, -2);
-        //         const text = links[i].match(textRegex).join().slice(1, -1);
-        //         if (href) {
-        //             httpLinks.push({
-        //                 href,
-        //                 text,
-        //                 file: userPath,
-        //             })
-    
-        //     }
-        // }
-        return httpLinks;
+            return httpLinks;
         }
-     
     },
 
     getLinkStatus: (objLinks) => {
@@ -90,6 +77,7 @@ export const api = {
                     return linkInfo;
                 })
         }))
+
 
     },
 
@@ -126,8 +114,8 @@ export const api = {
     },
 }
 
- //api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
- ///    .then((links) => api.getLinks(links)) // api.getLinks
-  //    .then((sts) => console.log(sts)) // api.getLinkStatus
-//      .then((stsNum) => api.calculateStats(stsNum, true)) //api.calculateStats
-//      .then((totUni) => console.log(totUni))
+// api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
+//     .then((links) => api.getLinks(links)) // api.getLinks
+//     .then((sts) => console.log(sts)) // api.getLinkStatus
+//     .then((stsNum) => api.calculateStats(stsNum, true)) //api.calculateStats
+//     .then((totUni) => console.log(totUni))

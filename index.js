@@ -31,7 +31,7 @@ export function mdFiles(path) {
                 }
             })
             if (mdPaths.length == 0) {
-                return 'Hola'
+                return 'This path does not contain any MD file.'
             } else {
                 return mdPaths
             }
@@ -48,21 +48,44 @@ export function mdFiles(path) {
 
 //console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-empty'))
 
-export const mdLinks = (path) => {
+export const mdLinks = (path, validate) => {
     return new Promise((resolve, reject) => {
-        const arrPaths = mdFiles(path)
-        if (arrPaths) {
-            arrPaths.map((everyPath) => {
-                api.readMdFile(everyPath)
-                .then((fileContent) => {
-                    let allLinks = api.getLinks(fileContent, everyPath);
-                    resolve(allLinks);
-                })
+        const resultPaths = mdFiles(path);
+        if (typeof (resultPaths) === 'object') {
+            const arrPaths = resultPaths;
+            const links = arrPaths.map((path) => {
+                return api.readMdFile(path) 
+                    .then((fileContent) => {
+                         const allLinks = api.getLinks(fileContent, path);
+                        if (allLinks !== undefined) {
+                            if (validate) {
+                                api.getLinkStatus(allLinks)
+                                    .then((linkStatus) => {
+                                        // console.log(linkStatus);
+                                        return linkStatus
+                                    })
+                            } else {
+                                return allLinks
+                            }
+                        }
+                    })
             })
+            Promise.all(links).then(resolve)
+            // resolve(links)
+        } else {
+            const errorMessage = resultPaths;
+            reject(errorMessage);
         }
     })
 
 }
 
-mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files')
+
+mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files', true)
     .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+
+// if option is validate, resolver with link status
+//resolve(statusOfLinks)
+// const stats = api.calculateStats(statusOfLinks, true)
+// console.log(stats, everyPath);

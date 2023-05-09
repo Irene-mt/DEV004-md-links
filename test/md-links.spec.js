@@ -1,5 +1,5 @@
 import { api } from '../api.js'
-import { mdFiles } from '../index.js'
+import { mdFiles, mdLinks } from '../index.js'
 
 describe('existPath', () => {
   it('should return true if the path exist', () => {
@@ -14,6 +14,7 @@ describe('isAbsolutePath', () => {
   it('should return true if the path is absolute', () => {
     expect(api.isAbsolutePath('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links')).toBe(true)
   });
+
   it('should return false if the path is no absolute', () => {
     expect(api.isAbsolutePath('../DEV004-data-lovers')).toBe(false)
   });
@@ -29,6 +30,7 @@ describe('isPathDirectory', () => {
   it('should return true if the path is a directory', () => {
     expect(api.isPathDirectory('../DEV004-data-lovers')).toBe(true)
   });
+
   it('should return false if the path is not a directory', () => {
     expect(api.isPathDirectory('../DEV004-data-lovers/README.md')).toBe(false)
   });
@@ -45,6 +47,7 @@ describe('isMdfile', () => {
   it('should return true if the file ext is ".md"', () => {
     expect(api.isMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-social-network/README.md')).toBe(true)
   });
+
   it('should return false if the the file ext is not ".md"', () => {
     expect(api.isMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-social-network/img-readme/test.png')).toBe(false)
   });
@@ -52,9 +55,10 @@ describe('isMdfile', () => {
 
 describe('readMdFile', () => {
   it('should return a string', () => {
-    return api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/example5.md').then(data => {
-      expect(data).toBe('Hola mundo!')
-    })
+    return api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/example5.md')
+      .then(data => {
+        expect(data).toBe('Hola mundo!')
+      })
   });
 });
 
@@ -146,6 +150,7 @@ describe('getLinks', () => {
       file: undefined
     }
   ];
+
   it('should return an object with all the links ', () => {
     expect(api.getLinks(entry)).toEqual(result)
   });
@@ -265,7 +270,7 @@ describe('calculateStats', () => {
       ok: 'OK!'
     }
   ]
-  const resultTrue = { Total: 16, Unique: 9 , Broken: 2 };
+  const resultTrue = { Total: 16, Unique: 9, Broken: 2 };
   const resultFalse = { Total: 16, Unique: 9 };
   it('should return total, unique and broken ', () => {
     expect(api.calculateStats(entry, true)).toEqual(resultTrue)
@@ -277,13 +282,14 @@ describe('calculateStats', () => {
 });
 
 describe('mdFiles', () => {
-  
   it('should return "the path does not exist"', () => {
-    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV04-md-links')).toBe('This path does not exist.')
+    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV04-md-links')).toEqual('This path does not exist.')
   });
+
   it('should return "this path is not a directory or md file"', () => {
-    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/api.js')).toBe('This path is not a directory or a MD file.')
+    expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/api.js')).toEqual('This path is not a directory or a MD file.')
   });
+
   it('should return an array with one path', () => {
     expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/ex')).toEqual(
       [
@@ -291,6 +297,7 @@ describe('mdFiles', () => {
       ]
     )
   });
+
   it('should return an array with multiple paths', () => {
     expect(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files')).toEqual(
       [
@@ -300,6 +307,246 @@ describe('mdFiles', () => {
         'C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files\\example5.md'
       ]
     )
+  });
+
+  it('should return an array with multiple paths converted to absolut', () => {
+    expect(mdFiles('./example-files')).toEqual(
+      [
+        'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example-files\\ex\\example2.md',
+        'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example-files\\example3.md',
+        'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example-files\\example4.md',
+        'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example-files\\example5.md'
+      ]
+    )
+  });
+
+  it('should return "this path does not contain any md file"', () => {
+    expect(mdFiles('./example-empty')).toEqual('This path does not contain any MD file.')
+  });
+
+  it('should return an absolut path of a md file', () => {
+    expect(mdFiles('./example-files/example4.md')).toStrictEqual(
+      [
+        'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example-files\\example4.md'
+      ]
+    )
+  });
+
+});
+
+describe('mdLinks', () => {
+  it('should return this path does not exist ', () => {
+    return expect(mdLinks('C:/Users/Laboratoria/Desktop/LABO')).rejects.toMatch('This path does not exist.');
+  });
+
+  it('should return no found links ', () => {
+    return expect(mdLinks('./example-files/example5.md')).rejects.toMatch('No links found.');
+  });
+
+  it('should return links', () => {
+    return expect(mdLinks('./example.md')).resolves.toStrictEqual(
+      [
+        {
+          href: 'https://es.wikipedia.org/wiki/Markdown',
+          text: 'Markdown',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://es.wikipedia.org/wiki/Markdown',
+          text: 'Markdown',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://developers.google.com/v8/',
+          text: 'motor de JavaScript V8 de Chrome',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://developers.google.com/v8/',
+          text: 'motor de JavaScript V8 de Chrome',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+          text: 'Arreglos',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+          text: 'Arreglos',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+          text: 'Funciones — bloques de código reutilizables - MDN',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+          text: 'Funciones — bloques de código reutilizables - MDN',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://docs.npmjs.com/files/package.json',
+          text: 'package.json - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/api/process.html',
+          text: 'Process - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/api/fs.html',
+          text: 'File system - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        },
+        {
+          href: 'https://nodejs.org/api/path.html',
+          text: 'Path - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+        }
+      ]
+    );
+  });
+
+  it('should return links', () => {
+    return expect(mdLinks('./example.md', true)).resolves.toStrictEqual(
+      [
+        {
+          href: 'https://es.wikipedia.org/wiki/Markdown',
+          text: 'Markdown',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://es.wikipedia.org/wiki/Markdown',
+          text: 'Markdown',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/es/',
+          text: 'Node.js',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://developers.google.com/v8/',
+          text: 'motor de JavaScript V8 de Chrome',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://developers.google.com/v8/',
+          text: 'motor de JavaScript V8 de Chrome',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+          text: 'Arreglos',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+          text: 'Arreglos',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+          text: 'Funciones — bloques de código reutilizables - MDN',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 'Request failed with status code 404',
+          ok: 'FAIL!'
+        },
+        {
+          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+          text: 'Funciones — bloques de código reutilizables - MDN',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 'Request failed with status code 404',
+          ok: 'FAIL!'
+        },
+        {
+          href: 'https://docs.npmjs.com/files/package.json',
+          text: 'package.json - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/api/process.html',
+          text: 'Process - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/api/fs.html',
+          text: 'File system - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        },
+        {
+          href: 'https://nodejs.org/api/path.html',
+          text: 'Path - Documentación oficial (en inglés)',
+          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+          status: 200,
+          ok: 'OK!'
+        }
+      ]
+    );
   });
 
 });

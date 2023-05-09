@@ -46,7 +46,7 @@ export function mdFiles(path) {
     }
 }
 
-//console.log(mdFiles('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-empty'))
+// console.log(mdFiles('./example-files/example4.md'))
 
 export const mdLinks = (path, validate) => {
     return new Promise((resolve, reject) => {
@@ -85,6 +85,6 @@ export const mdLinks = (path, validate) => {
 
 }
 
-mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/example5.md', true)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err))
+// mdLinks('./example.md', true)
+//     .then((res) => console.log(res))
+//     .catch((err) => console.log(err))

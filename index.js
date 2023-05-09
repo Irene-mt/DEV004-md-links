@@ -54,24 +54,29 @@ export const mdLinks = (path, validate) => {
         if (typeof (resultPaths) === 'object') {
             const arrPaths = resultPaths;
             const links = arrPaths.map((path) => {
-                return api.readMdFile(path) 
+                return api.readMdFile(path)
                     .then((fileContent) => {
-                         const allLinks = api.getLinks(fileContent, path);
-                        if (allLinks !== undefined) {
-                            if (validate) {
-                                api.getLinkStatus(allLinks)
-                                    .then((linkStatus) => {
-                                        // console.log(linkStatus);
-                                        return linkStatus
-                                    })
-                            } else {
-                                return allLinks
-                            }
-                        }
+                        const allLinks = api.getLinks(fileContent, path);
+                        return allLinks
                     })
             })
-            Promise.all(links).then(resolve)
-            // resolve(links)
+            Promise.all(links)
+                .then((arrLinks) => {
+                    arrLinks.map((contentLinks) => {
+                        if (contentLinks.length > 0) {
+                            if (validate) {
+                                api.getLinkStatus(contentLinks)
+                                    .then((linkStatus) => {
+                                        resolve(linkStatus);
+                                    })
+                            } else {
+                                resolve(contentLinks);
+                            }
+                        } else {
+                            reject('No links found.')
+                        }
+                    })
+                })
         } else {
             const errorMessage = resultPaths;
             reject(errorMessage);
@@ -80,12 +85,6 @@ export const mdLinks = (path, validate) => {
 
 }
 
-
-mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files', true)
+mdLinks('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example-files/example5.md', true)
     .then((res) => console.log(res))
     .catch((err) => console.log(err))
-
-// if option is validate, resolver with link status
-//resolve(statusOfLinks)
-// const stats = api.calculateStats(statusOfLinks, true)
-// console.log(stats, everyPath);

@@ -48,8 +48,9 @@ export const api = {
                     })
                 };
             });
-            return httpLinks;
+            
         }
+        return httpLinks;
     },
 
     getLinkStatus: (objLinks) => {

@@ -430,7 +430,7 @@ describe('mdLinks', () => {
     );
   });
 
-  it('should return links', () => {
+  it('should return links with status', () => {
     return expect(mdLinks('./example.md', true)).resolves.toStrictEqual(
       [
         {

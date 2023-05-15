@@ -68,7 +68,11 @@ export const mdLinks = (path, validate) => {
                     // filter empty objects
                     const filterObjLinks = objLinks.filter(obj => obj.length !== 0);
                     if (!validate) {
-                        resolve(filterObjLinks)
+                        if(filterObjLinks.length===0){
+                            reject('No links found.')
+                        } else {
+                            resolve(filterObjLinks)
+                        } 
                     } else if (validate) {
                         const statusLink = filterObjLinks.map((links) => {
                             return api.getLinkStatus(links)
@@ -92,6 +96,6 @@ export const mdLinks = (path, validate) => {
 
 }
 
-// mdLinks('./example-files/example3.md', false)
+// mdLinks('./example.md', true)
 //     .then((res) => console.log(res))
 //     .catch((err) => console.log(err))

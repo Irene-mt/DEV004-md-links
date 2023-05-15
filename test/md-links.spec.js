@@ -346,86 +346,88 @@ describe('mdLinks', () => {
   it('should return links', () => {
     return expect(mdLinks('./example.md')).resolves.toStrictEqual(
       [
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://developers.google.com/v8/',
-          text: 'motor de JavaScript V8 de Chrome',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://developers.google.com/v8/',
-          text: 'motor de JavaScript V8 de Chrome',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
-          text: 'Arreglos',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
-          text: 'Arreglos',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
-          text: 'Funciones — bloques de código reutilizables - MDN',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
-          text: 'Funciones — bloques de código reutilizables - MDN',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://docs.npmjs.com/files/package.json',
-          text: 'package.json - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/api/process.html',
-          text: 'Process - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/api/fs.html',
-          text: 'File system - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        },
-        {
-          href: 'https://nodejs.org/api/path.html',
-          text: 'Path - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
-        }
+        [
+          {
+            href: 'https://es.wikipedia.org/wiki/Markdown',
+            text: 'Markdown',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://es.wikipedia.org/wiki/Markdown',
+            text: 'Markdown',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://developers.google.com/v8/',
+            text: 'motor de JavaScript V8 de Chrome',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://developers.google.com/v8/',
+            text: 'motor de JavaScript V8 de Chrome',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+            text: 'Arreglos',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+            text: 'Arreglos',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+            text: 'Funciones — bloques de código reutilizables - MDN',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+            text: 'Funciones — bloques de código reutilizables - MDN',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://docs.npmjs.com/files/package.json',
+            text: 'package.json - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/api/process.html',
+            text: 'Process - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/api/fs.html',
+            text: 'File system - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          },
+          {
+            href: 'https://nodejs.org/api/path.html',
+            text: 'Path - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md'
+          }
+        ]
       ]
     );
   });
@@ -433,118 +435,120 @@ describe('mdLinks', () => {
   it('should return links with status', () => {
     return expect(mdLinks('./example.md', true)).resolves.toStrictEqual(
       [
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
-          text: 'Markdown',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/es/',
-          text: 'Node.js',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://developers.google.com/v8/',
-          text: 'motor de JavaScript V8 de Chrome',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://developers.google.com/v8/',
-          text: 'motor de JavaScript V8 de Chrome',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
-          text: 'Arreglos',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
-          text: 'Arreglos',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
-          text: 'Funciones — bloques de código reutilizables - MDN',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 'Request failed with status code 404',
-          ok: 'FAIL!'
-        },
-        {
-          href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
-          text: 'Funciones — bloques de código reutilizables - MDN',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 'Request failed with status code 404',
-          ok: 'FAIL!'
-        },
-        {
-          href: 'https://docs.npmjs.com/files/package.json',
-          text: 'package.json - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/api/process.html',
-          text: 'Process - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/api/fs.html',
-          text: 'File system - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        },
-        {
-          href: 'https://nodejs.org/api/path.html',
-          text: 'Path - Documentación oficial (en inglés)',
-          file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
-          status: 200,
-          ok: 'OK!'
-        }
+        [
+          {
+            href: 'https://es.wikipedia.org/wiki/Markdown',
+            text: 'Markdown',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://es.wikipedia.org/wiki/Markdown',
+            text: 'Markdown',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/es/',
+            text: 'Node.js',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://developers.google.com/v8/',
+            text: 'motor de JavaScript V8 de Chrome',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://developers.google.com/v8/',
+            text: 'motor de JavaScript V8 de Chrome',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+            text: 'Arreglos',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+            text: 'Arreglos',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+            text: 'Funciones — bloques de código reutilizables - MDN',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 'Request failed with status code 404',
+            ok: 'FAIL!'
+          },
+          {
+            href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+            text: 'Funciones — bloques de código reutilizables - MDN',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 'Request failed with status code 404',
+            ok: 'FAIL!'
+          },
+          {
+            href: 'https://docs.npmjs.com/files/package.json',
+            text: 'package.json - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/api/process.html',
+            text: 'Process - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/api/fs.html',
+            text: 'File system - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          },
+          {
+            href: 'https://nodejs.org/api/path.html',
+            text: 'Path - Documentación oficial (en inglés)',
+            file: 'C:\\Users\\Laboratoria\\Desktop\\LABORATORIA\\DEV004-md-links\\example.md',
+            status: 200,
+            ok: 'OK!'
+          }
+        ]
       ]
     );
   });

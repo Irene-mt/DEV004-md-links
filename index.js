@@ -64,24 +64,24 @@ export const mdLinks = (path, validate) => {
             })
             // resolve all the promises with the links
             Promise.all(links)
-                .then((arrLinks) => {
-                    arrLinks.map((contentLinks) => {
-                        // validate if the array contains links
-                        if (contentLinks.length > 0) {
-                            // resolve the promise if validate is true or false
-                            if (validate) {
-                                api.getLinkStatus(contentLinks)
-                                    .then((linkStatus) => {
-                                        resolve(linkStatus);
-                                    })
-                            } else if (!validate){
-                                //console.log(contentLinks);
-                                resolve(contentLinks);
-                            }
-                        } else {
-                            reject('No links found.')
-                        }
-                    })
+                .then((objLinks) => {
+                    // filter empty objects
+                    const filterObjLinks = objLinks.filter(obj => obj.length !== 0);
+                    if (!validate) {
+                        resolve(filterObjLinks)
+                    } else if (validate) {
+                        const statusLink = filterObjLinks.map((links) => {
+                            return api.getLinkStatus(links)
+                                .then((statusLink) => {
+                                    return statusLink;
+                                })
+                        })
+                        // resolve all the promises with status
+                        Promise.all(statusLink)
+                            .then((allStatus) => {
+                                resolve(allStatus);
+                            })
+                    }
                 })
         } else {
             // if resultPaths is a string, then reject the promise
@@ -92,6 +92,6 @@ export const mdLinks = (path, validate) => {
 
 }
 
-// mdLinks('./ex.md', false)
+// mdLinks('./example-files/example3.md', false)
 //     .then((res) => console.log(res))
 //     .catch((err) => console.log(err))

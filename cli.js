@@ -44,45 +44,50 @@ ${chalk.hex('#874C62').inverse('  Broken:  ')} ${chalk.hex('#874C62').bold(broke
         })
 } else if (path && stats) {
     mdLinks(path, false)
-        .then((links) => {
-            // total links in md file
-            const total = (Object.keys(links)).length;
-            // search for duplicate href
-            const searchNumLinks = links.reduce((acc, link) => {
-                acc[link.href] = ++acc[link.href] || 0;
-                return acc;
-            }, {
-            })
-            // calculate unique links
-            const unique = (Object.entries(searchNumLinks)).length;
-            console.log(
-                `${chalk.hex('#A7D2CB').inverse('  Total:   ')} ${chalk.hex('#A7D2CB').bold(total)}
+        .then((objLinks) => {
+objLinks.map((links)=>{
+                // total links in md file
+                const total = (Object.keys(links)).length;
+                // search for duplicate href
+                const searchNumLinks = links.reduce((acc, link) => {
+                    acc[link.href] = ++acc[link.href] || 0;
+                    return acc;
+                }, {
+                })
+                // calculate unique links
+                const unique = (Object.entries(searchNumLinks)).length;
+                console.log(
+                    `${chalk.hex('#A7D2CB').inverse('  Total:   ')} ${chalk.hex('#A7D2CB').bold(total)}
 ${chalk.hex('#F2D388').inverse('  Unique:  ')} ${chalk.hex('#F2D388').bold(unique)}`)
+})
         })
         .catch((err) => {
             console.log(`${chalk.hex('#C21010').inverse(' ERROR ')} ${chalk.white.bold(err, 'Try with a different path.')}`);
         })
 } else if (path && validate) {
     mdLinks(path, true)
-        .then((links) => {
-            links.map((link) => {
-                if (link.ok === 'OK!') {
-                    console.log(
-                        `${chalk.hex('#A7D2CB').inverse('  href  ')} ${chalk.hex('#A7D2CB').bold(link.href)}
-${chalk.hex('#F2D388').inverse('  text  ')} ${chalk.hex('#F2D388').bold(link.text)}
-${chalk.hex('#C98474').inverse('  file  ')} ${chalk.hex('#C98474').bold(link.file)}
-${chalk.hex('#874C62').inverse(' status ')} ${chalk.hex('#874C62').bold(link.status)}
-${chalk.hex('#AACB73').inverse('   ok   ')} ${chalk.hex('#AACB73').bold(link.ok)}
-`)
-                } else {
-                    console.log(
-                        `${chalk.hex('#A7D2CB').inverse('  href  ')} ${chalk.hex('#A7D2CB').bold(link.href)}
-${chalk.hex('#F2D388').inverse('  text  ')} ${chalk.hex('#F2D388').bold(link.text)}
-${chalk.hex('#C98474').inverse('  file  ')} ${chalk.hex('#C98474').bold(link.file)}
-${chalk.hex('#874C62').inverse(' status ')} ${chalk.hex('#874C62').bold(link.status)}
-${chalk.hex('#D61355').inverse('   ok   ')} ${chalk.hex('#D61355').bold(link.ok)}
-`)
-                }
+        .then((objLinks) => {
+            objLinks.map((links) => {
+                links.map((eachLink) => {
+                    if (eachLink.ok === 'OK!') {
+                        console.log(
+                            `${chalk.hex('#A7D2CB').inverse('  href  ')} ${chalk.hex('#A7D2CB').bold(eachLink.href)}
+${chalk.hex('#F2D388').inverse('  text  ')} ${chalk.hex('#F2D388').bold(eachLink.text)}
+${chalk.hex('#C98474').inverse('  file  ')} ${chalk.hex('#C98474').bold(eachLink.file)}
+${chalk.hex('#874C62').inverse(' status ')} ${chalk.hex('#874C62').bold(eachLink.status)}
+${chalk.hex('#AACB73').inverse('   ok   ')} ${chalk.hex('#AACB73').bold(eachLink.ok)}
+    `)
+                    } else {
+                        console.log(
+                            `${chalk.hex('#A7D2CB').inverse('  href  ')} ${chalk.hex('#A7D2CB').bold(eachLink.href)}
+${chalk.hex('#F2D388').inverse('  text  ')} ${chalk.hex('#F2D388').bold(eachLink.text)}
+${chalk.hex('#C98474').inverse('  file  ')} ${chalk.hex('#C98474').bold(eachLink.file)}
+${chalk.hex('#874C62').inverse(' status ')} ${chalk.hex('#874C62').bold(eachLink.status)}
+${chalk.hex('#D61355').inverse('   ok   ')} ${chalk.hex('#D61355').bold(eachLink.ok)}
+    `)
+                    }
+                })
+
             })
         })
         .catch((err) => {
@@ -90,13 +95,16 @@ ${chalk.hex('#D61355').inverse('   ok   ')} ${chalk.hex('#D61355').bold(link.ok)
         })
 } else {
     mdLinks(path, false)
-        .then((links) => {
-            links.map((link) => {
-                console.log(
-                    `${chalk.hex('#A7D2CB').inverse(' href ')} ${chalk.hex('#A7D2CB').bold(link.href)}
-${chalk.hex('#F2D388').inverse(' text ')} ${chalk.hex('#F2D388').bold(link.text)}
-${chalk.hex('#C98474').inverse(' file ')} ${chalk.hex('#C98474').bold(link.file)}
+        .then((objLinks) => {
+            objLinks.map((links) => {
+                links.map((eachLink) => {
+                    console.log(
+                        `${chalk.hex('#A7D2CB').inverse(' href ')} ${chalk.hex('#A7D2CB').bold(eachLink.href)}
+${chalk.hex('#F2D388').inverse(' text ')} ${chalk.hex('#F2D388').bold(eachLink.text)}
+${chalk.hex('#C98474').inverse(' file ')} ${chalk.hex('#C98474').bold(eachLink.file)}
 `)
+                })
+
             })
         })
         .catch((err) => {

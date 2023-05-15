@@ -1,6 +1,5 @@
 {
   "name": "md-links",
-  "bin": "./cli.js",
   "type": "module",
   "version": "1.0.0",
   "description": "search links in md files",
@@ -13,6 +12,9 @@
   "license": "ISC",
   "directories": {
     "test": "test"
+  },
+  "bin": {
+    "md-links": "./cli.js"
   },
   "scripts": {
     "start": "node ./api.js",

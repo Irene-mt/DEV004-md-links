@@ -21,7 +21,7 @@ ${chalk.hex('#A7D2CB').inverse('      only path       ')} ${chalk.hex('#A7D2CB')
 ${chalk.hex('#F2D388').inverse('     "--validate"     ')} ${chalk.hex('#F2D388').bold('It will show you the links with their status ok or fail.')}
 ${chalk.hex('#C98474').inverse('      "--stats"       ')} ${chalk.hex('#C98474').bold('It will show you the statistics of total and unique links.')}
 ${chalk.hex('#874C62').inverse(' "--validate --stats" ')} ${chalk.hex('#874C62').bold('It will show you the statistics of total, unique and broken links..')}`);
-}  else if (path && statsValidate || validateStats) {
+} else if (path && statsValidate || validateStats) {
     mdLinks(path, true)
         .then((objLinks) => {
             objLinks.map((links) => {

@@ -110,13 +110,6 @@ export const api = {
                 Broken: broken,
             }
         }
-
         return allStats;
     },
 }
-
-// api.readMdFile('C:/Users/Laboratoria/Desktop/LABORATORIA/DEV004-md-links/example.md')
-//     .then((links) => api.getLinks(links)) // api.getLinks
-//     .then((sts) => console.log(sts)) // api.getLinkStatus
-//     .then((stsNum) => api.calculateStats(stsNum, true)) //api.calculateStats
-//     .then((totUni) => console.log(totUni))

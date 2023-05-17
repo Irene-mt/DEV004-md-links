@@ -1,13 +1,13 @@
 # Markdown links
 ## Índice
 
-*[1. Resumen del proyecto](##1-Resumen-del-proyecto)*
-*[2. Planeación de sprints](##2-Planeación-de-sprints)*
-*[3. Diagramas de flujo](##3-Diagramas-de-flujo)*
-*[4. Módulos del proyecto](##4-Módulos-del-proyecto)*
-*[5.Modo de uso ](##5-Modo-de-uso)*
-*[6.Pruebas unitarias ](##6-Pruebas-unitarias)*
-*[7. Checklist](##7-Cheklist)*
+* [1. Resumen del proyecto](##1-Resumen-del-proyecto)*
+* [2. Planeación de sprints](##2-Planeación-de-sprints)*
+* [3. Diagramas de flujo](##3-Diagramas-de-flujo)*
+* [4. Módulos del proyecto](##4-Módulos-del-proyecto)*
+* [5.Modo de uso ](##5-Modo-de-uso)*
+* [6.Pruebas unitarias ](##6-Pruebas-unitarias)*
+* [7. Checklist](##7-Checklist)*
 
 ## 1. Resumen del proyecto
 Creación de una herramienta de línea de comando (CLI) así como una librería (o biblioteca - library) en JavaScript, que lea y analice archivos en formato `Markdown`, para verificar los links que contengan y reportar algunas estadísticas.
